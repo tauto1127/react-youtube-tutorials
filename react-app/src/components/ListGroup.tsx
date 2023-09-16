@@ -1,12 +1,28 @@
-function ListGroup(){
-    const items = [
+import { MouseEvent } from "react";
+function ListGroup() {
+    let items = [
         'New York',
         'San Francisco',
         'Tokyo',
         'London',
         'Paris',
     ];
-    return <h1>List Group</h1>;
+
+    const handleClick = (event: MouseEvent) => console.log(event);
+    //items = [];
+    return <>
+        <h1>List</h1>
+        {items.length === 0 && <p>No item found</p>}
+        <ul className="list-group">
+            {items.map((item, index) => (
+                <li className="list-group-item" key={item} onClick={handleClick}>{item}</li>//reactはアイテムの変更を検知するため、それぞれの固有のidが必要。
+            ))}
+        </ul>
+    </>
 }
+//{items.length === 0 && <p>No item found</p>}は
+//{items.length === 0 ? <p>No item found</p> : null}
+//と同じ
+
 
 export default ListGroup;
